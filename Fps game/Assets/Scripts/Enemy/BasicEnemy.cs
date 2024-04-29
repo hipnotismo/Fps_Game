@@ -14,9 +14,10 @@ public class BasicEnemy : MonoBehaviour
     }
     public void TakeDamage()
     {
-        if (tempLife > 0)
+        if (tempLife > 1)
         {
             tempLife--;
+            Debug.Log(tempLife);
         }
         else
         {

@@ -11,7 +11,7 @@ public class ScopeControl : MonoBehaviour
     }
     public void ActivateScope()
     {
-        Debug.Log("its action time");
+        //Debug.Log("its action time");
         ScopeDeactivated.color = Color.red;
     }
 

@@ -32,18 +32,18 @@ public class Pistol : BaseGun
         RaycastHit hit;
         if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range))
         {
-            Debug.Log(hit.transform.name);
+            //Debug.Log(hit.transform.name);
 
             BasicEnemy enemy = hit.transform.GetComponent<BasicEnemy>();
             if (enemy != null)
             {
                 Scope.ActivateScope();
-                Debug.Log("Hitting enemy");
+               // Debug.Log("Hitting enemy");
             }
             else
             {
                 Scope.DeactivateScope();
-                Debug.Log("Not hitting enemy");
+               // Debug.Log("Not hitting enemy");
 
             }
         }

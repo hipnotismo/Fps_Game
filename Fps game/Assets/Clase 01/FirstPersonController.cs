@@ -49,6 +49,8 @@ public class FirstPersonController : MonoBehaviour
 		controller = GetComponent<CharacterController>();
 		characterTargetRot = transform.localRotation;
 		cameraTargetRot = look.localRotation;
+		Cursor.visible = false;
+		Cursor.lockState = CursorLockMode.Locked;
 	}
 	void Update()
 	{
