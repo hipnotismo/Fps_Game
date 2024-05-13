@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicEnemy : MonoBehaviour
+public class BasicEnemy : MonoBehaviour, ITakeDamage
 {
     [SerializeField] BasicEnemyData data;
 
@@ -12,6 +12,7 @@ public class BasicEnemy : MonoBehaviour
     {
         tempLife = data.life;
     }
+
     public void TakeDamage()
     {
         if (tempLife > 1)

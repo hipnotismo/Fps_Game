@@ -6,12 +6,20 @@ public class TrailCreation : MonoBehaviour
 {
     private void OnEnable()
     {
+        Pistol.TrailActivation += TrailActivation;
         Pistol.TrailCreation += TrailSpawn;
     }
 
     private void OnDisable()
     {
-        
+        Pistol.TrailActivation -= TrailActivation;
+        Pistol.TrailCreation -= TrailSpawn;
+
+    }
+
+    public void TrailActivation(TrailRenderer trail)
+    {
+       // trail.Play();
     }
 
     public void TrailSpawn(Vector3 BulletSpawnPoint, Quaternion identity, Vector3 Point, Vector3 Normal, bool MadeImpact,
@@ -31,8 +39,7 @@ public class TrailCreation : MonoBehaviour
         float distance = Vector3.Distance(Trail.transform.position, HitPoint);
         float remainingDistance = distance;
 
-        Debug.Log(BulletSpawnPoint);
-        Instantiate(firingParticleSystem, HitPoint, Quaternion.LookRotation(HitNormal));
+        Instantiate(firingParticleSystem, BulletSpawnPoint, Quaternion.LookRotation(HitNormal));
 
         while (remainingDistance > 0)
         {

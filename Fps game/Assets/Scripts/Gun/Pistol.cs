@@ -6,9 +6,10 @@ public class Pistol : BaseGun
 {
     [SerializeField] GunData pistolData;
     [SerializeField] ScopeControl Scope;
+    [SerializeField] GameObject SpawnPoint;
 
     public static event Action<Vector3, Quaternion, Vector3, Vector3, bool, ParticleSystem, ParticleSystem, TrailRenderer> TrailCreation;
-
+    public static event Action<TrailRenderer> TrailActivation;
     public override void Shoot()
     {
         if (fire)
@@ -16,14 +17,15 @@ public class Pistol : BaseGun
             RaycastHit hit;
             if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, pistolData.range))
             {
-                Debug.Log(hit.transform.name);
-
-                TrailCreation(fpsCamera.transform.position, Quaternion.identity, hit.point, hit.normal,true, pistolData.firingParticleSystem
+                TrailActivation(pistolData.trailRender);
+                TrailCreation(SpawnPoint.transform.position, Quaternion.identity, hit.point, hit.normal,true, pistolData.firingParticleSystem
                     , pistolData.impactParticleSystem, pistolData.trailRender);
-                BasicEnemy enemy = hit.transform.GetComponent<BasicEnemy>();
-                if (enemy != null)
+
+                ITakeDamage isHit = hit.collider.GetComponent<ITakeDamage>();
+              
+                if (isHit != null)
                 {
-                    enemy.TakeDamage();
+                    isHit.TakeDamage();
                 }
             }
         }
@@ -35,6 +37,7 @@ public class Pistol : BaseGun
         if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, pistolData.range))
         {
             BasicEnemy enemy = hit.transform.GetComponent<BasicEnemy>();
+
             if (enemy != null)
             {
                 Scope.ActivateScope();

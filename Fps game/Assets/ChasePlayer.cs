@@ -22,7 +22,6 @@ public class ChasePlayer : MonoBehaviour
     private void Update()
     {
         enemy.SetDestination(player.position);
-        Debug.Log("We mover");
     }
 
 }
