@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MainMenuControler : MonoBehaviour
+public class MenuControler : MonoBehaviour
 {
     [SerializeField] public Image LoadingProgressBar;
     [SerializeField] private int mainMenuBuildIndex = 0;
