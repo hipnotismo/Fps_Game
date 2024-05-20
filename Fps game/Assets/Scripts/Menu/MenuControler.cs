@@ -35,7 +35,7 @@ public class MenuControler : MonoBehaviour
         SceneManager.LoadSceneAsync(SceneName);
     }
 
-    private void ActivateScreen(GameObject Screen) 
+    public void ActivateScreen(GameObject Screen) 
     {
         Screen.SetActive(true);
     }
